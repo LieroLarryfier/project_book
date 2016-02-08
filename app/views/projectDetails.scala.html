@@ -1,0 +1,31 @@
+@(project: Project, workStepForm: Form[WorkStep])
+
+@import helper._
+
+@main("Project Overview") {
+
+<h1>Overview of @project.label (id: @project.id)</h1>
+
+    <div class="projectDescription">
+        @project.description
+    </div>
+
+    @form(routes.Application.deleteWorkStep(project.id)) {
+
+    <div class="workSteps">
+        <select name="workStepId" size="@Project.getWorkSteps(project.id).size">
+            @Project.getWorkSteps(project.id).map { workStep =>
+            <option value="@workStep.id">
+                #@workStep.id (@workStep.progress%) @workStep.header: @workStep.description
+                @workStep.pictures
+            </option>
+            }
+        </select>
+    </div>
+        <input type="submit" value="Delete">
+    }
+
+@form(routes.Application.projects) {
+<input type="submit" value="Back">
+}
+}

@@ -1,0 +1,50 @@
+@(projects: List[Project], projectForm: Form[Project])
+
+@import helper._
+
+@main("Project Overview") {
+
+<h1>@projects.size projects(s)</h1>
+
+    @projects.map { project =>
+    <div class="projectsIndex">
+        <div class="header">
+        @project.label
+        <hr/>
+        </div>
+
+        <div class="progressBar">
+            <span style="width: @Project.getProgressSum(project.id).toString()%">
+                @Project.getProgressSum(project.id).toString()%
+            </span>
+        </div>
+
+
+        <div class="bonusBar">
+            <table>
+            <tr>
+                <td class="categories">@project.categories</td>
+                <td class="tags">@project.tags</td>
+                <td class="contributors">@project.contributors</td>
+            </tr>
+            </table>
+        </div>
+
+        <div class="detailsButton">
+            @form(routes.Application.projectDetails(project.id)) {
+            <input type="submit" value="Details">
+            }
+        </div>
+
+    </div>
+    }
+
+<h2>Manage projects</h2>
+
+@form(routes.Application.manageProjects) {
+
+<input type="submit" value="Manage">
+
+}
+
+}

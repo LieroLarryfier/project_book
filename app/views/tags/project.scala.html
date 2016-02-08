@@ -1,0 +1,9 @@
+@(project: Project)
+
+@project.id
+@project.label
+@Project.getProgressSum(project.id).toString()
+@project.description
+@project.categories
+@project.tags
+@project.contributors

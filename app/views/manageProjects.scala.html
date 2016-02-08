@@ -1,0 +1,56 @@
+@(projects: List[Project], projectForm: Form[Project])
+
+@import helper._
+@import play.api.Play.current
+@import play.api.i18n.Messages.Implicits._
+
+@main("Project Overview") {
+
+<h1>@projects.size projects(s)</h1>
+
+<ul>
+    @projects.map { project =>
+    <li>
+        @tags.project(project)
+        <br>
+        @Project.getWorkSteps(project.id).size workstep(s)
+        <ul>
+        @Project.getWorkSteps(project.id).map { workStep =>
+             <li>
+                 @workStep.id
+                 @workStep.header
+                 @workStep.description
+                 @workStep.progress
+                 @workStep.pictures
+             </li>
+            }
+        </ul>
+        @form(routes.Application.deleteProject(project.id)) {
+        <input type="submit" value="Delete">
+        }
+        @form(routes.Application.addWorkStep(project.id)) {
+        <input type="submit" value="Add Workstep">
+        }
+    </li>
+    }
+</ul>
+
+<h2>Add a new project</h2>
+
+@form(routes.Application.addProject) {
+
+@inputText(projectForm("label"), '_label -> "Name", 'class -> "input")
+@inputText(projectForm("description"), '_label -> "Description", 'class -> "input")
+@inputText(projectForm("categories"), '_label -> "Categories", 'class -> "input")
+@inputText(projectForm("tags"), '_label -> "Tags", 'class -> "input")
+@inputText(projectForm("contributors"), '_label -> "Contributors", 'class -> "input")
+
+<input type="submit" value="Create">
+
+}
+
+@form(routes.Application.projects) {
+<input type="submit" value="Projects">
+}
+
+}
