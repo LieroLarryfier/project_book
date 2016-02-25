@@ -75,14 +75,13 @@ body {
     position: absolute;
     left: 0px;
     bottom: 0px;
-    margin: 5px;
+    margin-bottom: 5px;
     font-size: 10px;
-    width: 85%;
+    width: 100%;
 }
 
 .bonusBar table{
     width: 100%;
-    border-color: red;
 }
 
 .bonusBar td {
@@ -98,7 +97,7 @@ body {
     text-align: center;
     border: white dotted;
     border-width: 0px 1px;
-
+    margin-lefr: 3px;
 }
 
 .bonusBar .contributors {
@@ -109,7 +108,7 @@ body {
     white-space: nowrap;
     overflow: hidden;
     height: 13px;
-    width: 90px;
+    width: 107px;
     color: #FF00A0;
 }
 
