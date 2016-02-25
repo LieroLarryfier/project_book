@@ -31,6 +31,9 @@
         @form(routes.Application.addWorkStep(project.id)) {
         <input type="submit" value="Add Workstep">
         }
+        @form(routes.Application.addTodo(project.id)) {
+            <input type="submit" value="Add Todo">
+        }
     </li>
     }
 </ul>

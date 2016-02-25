@@ -2,9 +2,8 @@
 
 # --- !Ups
 
-CREATE SEQUENCE workStep_id_seq;
 CREATE TABLE workStep (
-    id integer NOT NULL DEFAULT nextval('workStep_id_seq'),
+    id integer primary key autoincrement,
     header varchar(255) NOT NULL,
     description varchar(255),
     progress integer NOT NULL,
@@ -15,4 +14,3 @@ CREATE TABLE workStep (
 # --- !Downs
 
 DROP TABLE workStep;
-DROP SEQUENCE workStep_id_seq;

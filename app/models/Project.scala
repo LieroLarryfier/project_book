@@ -37,11 +37,18 @@ object Project {
     }
   }
 
-
   def delete(id: Long) {
     DB.withConnection { implicit c =>
       SQL("delete from project where id = {id}").on(
         'id -> id
+      ).executeUpdate()
+    }
+  }
+
+  def addTodo(id: Long, todo: Todo) {
+    DB.withConnection { implicit c =>
+      SQL("insert into todo (priority, name, description, projectId) values ({priority}, {name}, {description}, {projectId})").on(
+        'priority -> todo.priority, 'name -> todo.name, 'description -> todo.description, 'projectId -> id
       ).executeUpdate()
     }
   }
@@ -58,8 +65,16 @@ object Project {
     SQL("select COALESCE(SUM(progress),0) from workStep where projectId={id}").on('id -> id).as(scalar[Int] single)
   }
 
+  def getTodoCount(id: Long): Int = DB.withConnection { implicit c =>
+    SQL("select COUNT() from todo where projectId={id}").on('id -> id).as(scalar[Int] single)
+  }
+
   def getWorkSteps(id: Long): List[WorkStep] = {
     WorkStep.getWorkSteps(id)
+  }
+
+  def getTodos(id: Long): List[Todo] = {
+    Todo.getTodos(id)
   }
 
 }

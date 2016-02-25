@@ -1,0 +1,25 @@
+@(project: Project, todoForm: Form[Todo], request: RequestHeader)
+
+@import helper._
+@import play.api.Play.current
+@import play.api.i18n.Messages.Implicits._
+
+@main("Project Overview") {
+
+<h1>Add Todo to @project.label (id: @project.id)</h1>
+
+@form(routes.Application.addTodoToProject(project.id), 'referer -> request.headers("referer")) {
+
+@inputText(todoForm("name"))
+@inputText(todoForm("description"))
+@inputText(todoForm("priority"))
+<input type="hidden" name="referer" value="@request.headers("referer")"/>
+<input type="submit" value="Add">
+
+}
+
+        <form action="@request.headers("referer")">
+                <input type="submit" value="Back">
+        </form>
+
+}

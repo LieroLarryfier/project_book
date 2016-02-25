@@ -2,9 +2,8 @@
 
 # --- !Ups
 
-CREATE SEQUENCE project_id_seq;
 CREATE TABLE project (
-    id integer NOT NULL DEFAULT nextval('project_id_seq'),
+    id integer primary key AUTOINCREMENT,
     label varchar(255) NOT NULL,
     categories varchar(255),
     progress integer NOT NULL DEFAULT 0,
@@ -16,4 +15,3 @@ CREATE TABLE project (
 # --- !Downs
 
 DROP TABLE project;
-DROP SEQUENCE project_id_seq;

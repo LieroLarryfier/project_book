@@ -9,10 +9,11 @@
     @projects.map { project =>
     <div class="projectsIndex">
         <div class="header">
-        @project.label
-        <hr/>
-        </div>
+            <div class="name"><a href="@routes.Application.projectDetails(project.id)">@project.label</a></div>
 
+            <div class="todos">(@Project.getTodoCount(project.id))</div>
+        </div>
+        <div><hr/></div>
         <div class="progressBar">
             <span style="width: @Project.getProgressSum(project.id).toString()%">
                 @Project.getProgressSum(project.id).toString()%
@@ -23,9 +24,9 @@
         <div class="bonusBar">
             <table>
             <tr>
-                <td class="categories">@project.categories</td>
-                <td class="tags">@project.tags</td>
-                <td class="contributors">@project.contributors</td>
+                <td class="categories"><div>@project.categories</div></td>
+                <td class="tags"><div>@project.tags</div></td>
+                <td class="contributors"><div>@project.contributors</div></td>
             </tr>
             </table>
         </div>

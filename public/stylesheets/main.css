@@ -34,7 +34,30 @@ body {
     font-family: "Trebuchet MS";
 }
 
+.projectsIndex .header div {
+    display: inline;
+    padding-bottom: 5px;
+}
+
+.projectsIndex .header div a:link,a:visited,a:hover,a:active {
+    color: white;
+    text-decoration: none;
+}
+
+.projectsIndex .header div a:hover,a:active {
+    text-decoration: underline;
+}
+
+.projectsIndex .header .name {
+    float: left;
+}
+
+.projectsIndex .header .todos {
+    float: right;
+}
+
 .projectsIndex hr {
+    clear: both;
     color: white;
     height: 1px;
     width: 340px;
@@ -75,11 +98,19 @@ body {
     text-align: center;
     border: white dotted;
     border-width: 0px 1px;
+
 }
 
 .bonusBar .contributors {
     text-align: right;
+}
 
+.bonusBar div {
+    white-space: nowrap;
+    overflow: hidden;
+    height: 13px;
+    width: 90px;
+    color: #FF00A0;
 }
 
 .detailsButton {

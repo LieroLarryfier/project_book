@@ -1,4 +1,4 @@
-@(project: Project, workStepForm: Form[WorkStep])
+@(project: Project, workStepForm: Form[WorkStep], request: RequestHeader)
 
 @import helper._
 @import play.api.Play.current
@@ -16,8 +16,7 @@
 @inputText(workStepForm("progress"))
 @inputText(workStepForm("pictures"))
 
-
-
+<input type="hidden" name="referer" value="@request.headers("referer")"/>
 <input type="submit" value="Add">
 
 }
@@ -31,7 +30,7 @@
 
 }
 
-@form(routes.Application.manageProjects) {
-<input type="submit" value="Back">
-        }
+    <form action="@request.headers("referer")">
+        <input type="submit" name="back" value="Back">
+    </form>
 }

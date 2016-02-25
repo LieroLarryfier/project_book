@@ -10,8 +10,31 @@
         @project.description
     </div>
 
-    @form(routes.Application.deleteWorkStep(project.id)) {
+    @form(routes.Application.addTodo(project.id)) {
+        <input type="submit" value="Add Todo">
+    }
+    @form(routes.Application.addWorkStep(project.id)) {
+        <input type="submit" value="Add Workstep">
+    }
 
+
+    @form(routes.Application.handleTodo(project.id)) {
+        Todo:
+        <div class="workSteps">
+            <select name="todoId" size="@Project.getTodos(project.id).size">
+            @Project.getTodos(project.id).map { todo =>
+                <option value="@todo.id">
+                    #@todo.id (@todo.priority) @todo.name: @todo.description (done: @todo.doneAt)
+                </option>
+            }
+            </select>
+        </div>
+        <button type="submit" name="action" value="delete">Delete</button>
+        <button type="submit" name="action" value="check">Check</button>
+    }
+
+    @form(routes.Application.deleteWorkStep(project.id)) {
+        Worksteps:
     <div class="workSteps">
         <select name="workStepId" size="@Project.getWorkSteps(project.id).size">
             @Project.getWorkSteps(project.id).map { workStep =>
